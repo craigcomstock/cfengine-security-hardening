@@ -1,6 +1,7 @@
 "Running FTP server software provides a network-based avenue of attack, and should be disabled if not needed. Furthermore, the FTP protocol is unencrypted and creates a risk of compromising sensitive information. Removing the vsftpd package decreases the risk of its accidental activation."
 -- https://csrc.nist.gov/CSRC/media/Projects/national-vulnerability-database/documents/CCE/CCE-rhel7.xlsx
 
+'''
 
 This module makes sure that common FTP server packages are not installed
 on hosts and thus also not running.
