@@ -1,13 +1,21 @@
 {
-  "name": "CFEngine Build module template repo",
+  "name": "CFEngine Security Hardening",
   "type": "module-repo",
-  "description": "This repo only provides 1 module, and is a good starting point for making your own modules",
+  "description": "This repo provides modules for security hardening",
   "provides": {
-    "my-module": {
-      "description": "This module has a policy file which reports a string to the terminal, and to the inventory system",
-      "tags": ["inventory"],
+    "ftp-server-not-installed": {
+      "description": "This module has a policy file which makes sure the ftp server package is not installed on the system",
+      "tags": ["supported", "security", "compliance"],
+      "subdirectory": "ftp-server-not-installed",
       "dependencies": ["autorun"],
-      "steps": ["copy ./my_policy.cf services/autorun/my_policy.cf"]
+      "steps": ["copy ./ftp_server_policy.cf services/autorun/ftp_server_policy.cf"]
+    },
+    "all-packages-upgraded": {
+      "description": "This module ensures that the package manager data is updated and all upgradeable packages are upgraded",
+      "tags": ["supported", "security", "compliance"],
+      "subdirectory": "all-packages-upgraded",
+      "dependencies": ["autorun"],
+      "steps": ["copy ./all_packages_upgraded_policy.cf services/autorun/all_packages_upgraded_policy.cf"]
     }
   }
 }

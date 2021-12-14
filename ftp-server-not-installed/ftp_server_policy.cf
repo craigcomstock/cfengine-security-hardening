@@ -1,0 +1,29 @@
+bundle agent ftp_server_uninstalled
+# @brief Makes sure the ftp server package is not installed on the system.
+# The CCE (Common Configuration Enumeration) reference is here: https://csrc.nist.gov/CSRC/media/Projects/national-vulnerability-database/documents/CCE/CCE-rhel7.xlsx
+# See https://ncp.nist.gov/cce/index for details about CCE.
+{
+  meta:
+      "tags" slist => { "autorun" };
+
+  vars:
+    redhat|suse::
+      "telnet_server_pkg_name" string => "vsftpd";
+    debian::
+      "ftp_server_pkg_name" slist => [ "vsftpd", "ftpd", "ftpd-ssl", "proftpd-basic", "pure-ftpd", "twoftpd" ];
+
+  classes:
+      "ftp_server_allowed" or => { "hardening_ftp_server_allowed",
+                                      "data:hardening_ftp_server_allowed" };
+
+  packages:
+    !ftp_server_allowed::
+      "${ftp_server_pkg_name}" -> { "CCE-80245-4" }
+        policy => "absent",
+        if => isvariable("ftp_server_pkg_name");
+
+  reports:
+    !ftp_server_allowed::
+      "warning: ftp server package name not known for this platform"
+        unless => isvariable("ftp_server_pkg_name");
+}
