@@ -1,0 +1,22 @@
+"Running FTP server software provides a network-based avenue of attack, and should be disabled if not needed. Furthermore, the FTP protocol is unencrypted and creates a risk of compromising sensitive information. Removing the vsftpd package decreases the risk of its accidental activation."
+-- https://csrc.nist.gov/CSRC/media/Projects/national-vulnerability-database/documents/CCE/CCE-rhel7.xlsx
+
+= Description
+
+This module makes sure that common FTP server packages are not installed
+on hosts and thus also not running. Currently only centos, redhat and debian-based
+distributions such as ubuntu are supported.
+
+= Example
+
+```console
+# sudo apt install vsftpd
+# cf-agent -KI
+    info: Successfully removed package 'vsftpd'
+```
+
+= Adding exceptions
+
+If FTP server packages are really needed on some specific hosts, they can be
+marked as such by defining the `hardening_ftp_server_allowed` class in either
+augments or CMDB.
