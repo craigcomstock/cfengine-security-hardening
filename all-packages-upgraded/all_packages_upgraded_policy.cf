@@ -1,7 +1,7 @@
-bundle agent upgrade_all_packages
+bundle agent all_packages_upgraded_policy
 {
   meta:
-    !hardening_packages_upgrade_skip::
+    !(hardening_packages_upgrade_skip|data:hardening_packages_upgrade_skip)::
       "tags" slist => { "autorun" };
 
   vars:
