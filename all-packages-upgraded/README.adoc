@@ -1,0 +1,28 @@
+
+From https://csrc.nist.gov/CSRC/media/Projects/national-vulnerability-database/documents/CCE/CCE-rhel7.xlsx:
+
+```
+If the system is joined to the Red Hat Network, a Red Hat Satellite Server, or a yum server, run the following command to install updates:
+$ sudo yum update 
+If the system is not configured to use one of these sources, updates (in the form of RPM packages) can be manually downloaded from the Red Hat Network and installed using rpm.
+NOTE: U.S. Defense systems are required to be patched within 30 days or sooner as local policy dictates.
+Installing software updates is a fundamental mitigation against the exploitation of publicly-known vulnerabilities.
+If the most recent security patches and updates are not installed, unauthorized users may take advantage of weaknesses in the unpatched software.
+The lack of prompt attention to patching could result in a system compromise.
+```
+
+This module makes sure that all software from the default repository is updated on a daily basis.
+The module also handles removing CFEngine cached data about installed packages and updateable packages as this is only refreshed once a day by default.
+
+= Example
+
+```console
+# cf-agent -KI
+    info: Successfully removed package 'vsftpd'
+```
+
+= Adding exceptions
+
+If a server must not receive updates, they can be
+marked as such by defining the `hardening_packages_upgrade_skip` class in either
+augments or CMDB.
