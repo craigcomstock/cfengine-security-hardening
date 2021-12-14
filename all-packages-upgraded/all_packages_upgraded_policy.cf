@@ -1,0 +1,35 @@
+# how often should we run the upgrade command?
+# probably TODO add an augment with a default of once a day maybe?
+# a schedule?
+bundle agent upgrade_all_packages
+{
+  meta:
+    "tags" slist => { "autorun" };
+
+# add in pip upgrades too yeah? ;)
+# pip list --outdated --format=freeze | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
+  vars:
+    debian|termux::
+      "_cmd" string => "apt upgrade --yes && apt autoremove --yes";
+    freebsd::
+      "_cmd" string => "pkg upgrade --yes";
+    redhat|amazon_linux::
+      "_cmd" string => "yum upgrade --yes";
+    suse|sles|opensuse::
+# zypper needs some output supression :)
+      "_cmd" string => "zypper -n update";
+    alpinelinux::
+# output supression also for apk in alpine
+      "_cmd" string => "apk upgrade";
+
+# TODO capture all stdout/stderr, check for result code and print out both if nonzero
+  commands:
+    "${_cmd}"
+      action => daily,
+      contain => in_shell;
+}
+
+body action daily
+{
+  ifelapsed => "1440";
+}
