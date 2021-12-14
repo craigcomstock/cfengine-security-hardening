@@ -1,6 +1,4 @@
-
-From https://csrc.nist.gov/CSRC/media/Projects/national-vulnerability-database/documents/CCE/CCE-rhel7.xlsx:
-
+[quote, https://csrc.nist.gov/CSRC/media/Projects/national-vulnerability-database/documents/CCE/CCE-rhel7.xlsx]
 ---
 Running FTP server software provides a network-based avenue of attack, and should be disabled if not needed. Furthermore, the FTP protocol is unencrypted and creates a risk of compromising sensitive information.
 
