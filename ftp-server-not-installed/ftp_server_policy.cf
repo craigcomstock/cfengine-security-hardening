@@ -1,4 +1,4 @@
-bundle agent ftp_server_uninstalled
+bundle agent ftp_server_not_installed
 # @brief Makes sure the ftp server package is not installed on the system.
 # The CCE (Common Configuration Enumeration) reference is here: https://csrc.nist.gov/CSRC/media/Projects/national-vulnerability-database/documents/CCE/CCE-rhel7.xlsx
 # See https://ncp.nist.gov/cce/index for details about CCE.
