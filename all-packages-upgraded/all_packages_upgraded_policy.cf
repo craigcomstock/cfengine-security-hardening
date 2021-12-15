@@ -8,7 +8,7 @@ bundle agent all_packages_upgraded_policy
     debian::
       "_cmd" string => "apt upgrade --yes && apt autoremove --yes";
     redhat::
-      "_cmd" string => "yum upgrade --yes";
+      "_cmd" string => "yum upgrade --assumeyes";
     suse|sles|opensuse::
       "_cmd" string => "zypper -n update";
     any::
