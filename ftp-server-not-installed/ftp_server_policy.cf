@@ -8,7 +8,7 @@ bundle agent ftp_server_uninstalled
 
   vars:
     redhat|suse::
-      "telnet_server_pkg_name" string => "vsftpd";
+      "ftp_server_pkg_name" string => "vsftpd";
     debian::
       "ftp_server_pkg_name" slist => { "vsftpd", "ftpd", "ftpd-ssl", "proftpd-basic", "pure-ftpd", "twoftpd" };
 
