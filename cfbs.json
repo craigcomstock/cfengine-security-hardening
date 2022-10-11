@@ -3,17 +3,17 @@
   "type": "module-repo",
   "description": "This repo provides modules for security hardening",
   "provides": {
-    "ftp-server-not-installed": {
+    "uninstall-ftp": {
       "description": "This module has a policy file which makes sure the ftp server package is not installed on the system",
       "tags": ["supported", "security", "compliance"],
-      "subdirectory": "ftp-server-not-installed",
+      "subdirectory": "uninstall-ftp",
       "dependencies": ["autorun"],
       "steps": ["copy ./ftp_server_policy.cf services/autorun/ftp_server_policy.cf"]
     },
-    "all-packages-upgraded": {
+    "upgrade-all-packages": {
       "description": "This module ensures that the package manager data is updated and all upgradeable packages are upgraded",
       "tags": ["supported", "security", "compliance"],
-      "subdirectory": "all-packages-upgraded",
+      "subdirectory": "upgrade-all-packages",
       "dependencies": ["autorun"],
       "steps": ["copy ./all_packages_upgraded_policy.cf services/autorun/all_packages_upgraded_policy.cf"]
     }

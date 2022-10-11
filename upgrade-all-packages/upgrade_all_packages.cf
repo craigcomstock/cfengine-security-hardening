@@ -1,4 +1,4 @@
-bundle agent all_packages_upgraded_policy
+bundle agent upgrade_all_packages_policy
 {
   meta:
     !(hardening_packages_upgrade_skip|data:hardening_packages_upgrade_skip)::
