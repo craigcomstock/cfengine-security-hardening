@@ -3,5 +3,5 @@
 This repository hosts various security hardening policies.
 
 * Modules provided
-- [[./all-packages-upgraded][all-packages-upgraded]]
-- [[./ftp-server-not-installed][ftp-server-not-installed]]
+- [[./upgrade-all-packages][upgrade-all-packages]]
+- [[./uninstall-ftp][uninstall-ftp]]

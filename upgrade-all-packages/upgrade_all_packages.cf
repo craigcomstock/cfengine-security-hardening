@@ -1,4 +1,4 @@
-bundle agent all_packages_upgraded_policy
+bundle agent upgrade_all_packages_policy
 {
   meta:
     !(hardening_packages_upgrade_skip|data:hardening_packages_upgrade_skip)::
@@ -11,21 +11,32 @@ bundle agent all_packages_upgraded_policy
       "_cmd" string => "yum upgrade --assumeyes";
     suse|sles|opensuse::
       "_cmd" string => "zypper -n update";
+    alpine::
+      "_cmd" string => "apk upgrade --available";
     any::
       "package_cache_files" slist => {
         "$(sys.statedir)/packages_updates_$(package_module_knowledge.platform_default).lmdb*",
         "$(sys.statedir)/packages_installed_$(package_module_knowledge.platform_default).lmdb*"
       };
 
+  classes:
+    !debian.!redhat.!suse.!sles.!opensuse.!alpine::
+      "all_packages_upgrade_unsupported";
+
   commands:
     "${_cmd}"
       action => daily,
       classes => if_repaired("all_packages_upgraded"),
+      if => isvariable("_cmd"),
       contain => in_shell;
+
   files:
     all_packages_upgraded::
       "$(package_cache_files)"
         delete => tidy;
+  reports:
+    all_packages_upgrade_unsupported::
+      "Sorry, all packages upgrade module is not supported on this platform. Please submit a bug report to https://github.com/craigcomstock/cfengine-security-hardening";
 }
 
 body action daily
