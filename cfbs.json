@@ -8,7 +8,7 @@
       "tags": ["supported", "security", "compliance"],
       "subdirectory": "uninstall-ftp",
       "dependencies": ["autorun"],
-      "steps": ["copy ./uninstall_ftp.cf.cf services/autorun/uninstall_ftp.cf.cf"]
+      "steps": ["copy ./uninstall_ftp.cf services/autorun/uninstall_ftp.cf"]
     },
     "upgrade-all-packages": {
       "description": "This module ensures that the package manager data is updated and all upgradeable packages are upgraded",
