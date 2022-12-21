@@ -28,8 +28,7 @@ bundle agent upgrade_all_packages_policy
       action => daily,
       classes => if_repaired("all_packages_upgraded"),
       if => isvariable("_cmd"),
-      inform => "false",
-      contain => in_shell;
+      contain => in_shell_and_silent;
 
   files:
     all_packages_upgraded::
